@@ -1,0 +1,12 @@
+{
+    "network": "localhost",
+    "contract_name": "UniswapLP",
+    "constructor_arguments": [
+        "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
+    ],
+    "contract_address": "",
+    "owner_mnemonic": "",
+    "provider": "http://0.0.0.0:8545",
+    "owner_key": "",
+    "owner_address": ""
+}
