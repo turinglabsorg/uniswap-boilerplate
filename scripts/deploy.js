@@ -15,7 +15,7 @@ async function main() {
 
   // Deploy swap
   const Swap = await hre.ethers.getContractFactory(configs.contract_name.swap);
-  const contractSwap = await LP.deploy(...configs.constructor_arguments.swap);
+  const contractSwap = await Swap.deploy(...configs.constructor_arguments.swap);
   console.log('Deploy transaction is: ' + contractSwap.deployTransaction.hash)
   await contractSwap.deployed();
   console.log("Contract deployed to:", contractSwap.address);
