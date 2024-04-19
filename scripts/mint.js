@@ -6,7 +6,7 @@ async function main() {
   const artifact = JSON.parse(fs.readFileSync('./artifacts/contracts/UniswapLP.sol/UniswapLP.json'))
   const provider = new ethers.providers.JsonRpcProvider(configs.provider);
   const wallet = new ethers.Wallet(configs.owner_key).connect(provider)
-  const contract = new ethers.Contract(configs.contract_address, artifact.abi, wallet)
+  const contract = new ethers.Contract(configs.contract_address.lp, artifact.abi, wallet)
 
   const result = await contract.mintNewPosition()
   console.log("Waiting at:", result.hash)

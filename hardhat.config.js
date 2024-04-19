@@ -10,6 +10,9 @@ let hardhatConfigs = {
         url: `https://eth-mainnet.g.alchemy.com/v2/5_Xm3n05Mh_bN5kldBXfjWysMeg4wK_X`,
       }
     },
+    tenderly: {
+      url: provider
+    },
     rinkeby: {
       url: provider
     },

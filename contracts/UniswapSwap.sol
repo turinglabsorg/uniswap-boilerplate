@@ -4,6 +4,7 @@ pragma abicoder v2;
 
 import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+import "hardhat/console.sol";
 
 contract UniswapSwap {
     // For the scope of these swap examples,
@@ -22,7 +23,7 @@ contract UniswapSwap {
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
     // For this example, we will set the pool fee to 0.3%.
-    uint24 public constant poolFee = 30000;
+    uint24 public constant poolFee = 5000;
 
     constructor(ISwapRouter _swapRouter) {
         swapRouter = _swapRouter;
@@ -67,8 +68,8 @@ contract UniswapSwap {
         amountOut = swapRouter.exactInputSingle(params);
     }
 
-    function buyDAI(uint256 amountIn) external returns (uint256 amountOut) {
-        // Transfer the specified amount of DAI to this contract.
+    function buyDAI(uint256 amountIn) external {
+        // Transfer the specified amount of WETH9 to this contract.
         TransferHelper.safeTransferFrom(
             WETH9,
             msg.sender,
@@ -76,9 +77,18 @@ contract UniswapSwap {
             amountIn
         );
 
-        // Approve the router to spend DAI.
-        TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
+        console.log("amountIn: %s", amountIn);
+        console.log(
+            "Balance of WETH9: %s",
+            IERC20(WETH9).balanceOf(address(this))
+        );
 
+        // Approve the router to spend WETH9.
+        TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
+        console.log(
+            "Allowance of WETH9: %s",
+            IERC20(WETH9).allowance(address(this), address(swapRouter))
+        );
         // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.
         // We also set the sqrtPriceLimitx96 to be 0 to ensure we swap our exact input amount.
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
@@ -94,7 +104,46 @@ contract UniswapSwap {
             });
 
         // The call to `exactInputSingle` executes the swap.
-        amountOut = swapRouter.exactInputSingle(params);
+        swapRouter.exactInputSingle(params);
+    }
+
+    function buyUSDC(uint256 amountIn) external {
+        // Transfer the specified amount of WETH9 to this contract.
+        TransferHelper.safeTransferFrom(
+            WETH9,
+            msg.sender,
+            address(this),
+            amountIn
+        );
+
+        console.log("amountIn: %s", amountIn);
+        console.log(
+            "Balance of WETH9: %s",
+            IERC20(WETH9).balanceOf(address(this))
+        );
+
+        // Approve the router to spend WETH9.
+        TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
+        console.log(
+            "Allowance of WETH9: %s",
+            IERC20(WETH9).allowance(address(this), address(swapRouter))
+        );
+        // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.
+        // We also set the sqrtPriceLimitx96 to be 0 to ensure we swap our exact input amount.
+        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
+            .ExactInputSingleParams({
+                tokenIn: WETH9,
+                tokenOut: USDC,
+                fee: poolFee,
+                recipient: msg.sender,
+                deadline: block.timestamp,
+                amountIn: amountIn,
+                amountOutMinimum: 0,
+                sqrtPriceLimitX96: 0
+            });
+
+        // The call to `exactInputSingle` executes the swap.
+        swapRouter.exactInputSingle(params);
     }
 
     /// @notice swapExactOutputSingle swaps a minimum possible amount of DAI for a fixed amount of WETH.
