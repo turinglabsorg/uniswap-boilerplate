@@ -6,9 +6,9 @@ async function main() {
   const artifact = JSON.parse(fs.readFileSync('./scripts/utils/uniswap.json'))
   const provider = new ethers.providers.JsonRpcProvider(configs.provider);
   const wallet = new ethers.Wallet(configs.owner_key).connect(provider)
-  const contract = new ethers.Contract("0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45", artifact, wallet)
+  const contract = new ethers.Contract("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", artifact, wallet)
 
-  const result = await contract.wrapETH(utils.parseEther("10"), { value: utils.parseEther("10") })
+  const result = await contract.wrapETH(utils.parseEther("10000"), { value: utils.parseEther("10000") })
   console.log("Waiting at:", result.hash)
   const receipt = await result.wait()
   console.log("💸 Gas used:", receipt.gasUsed.toString())

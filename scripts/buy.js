@@ -22,14 +22,13 @@ async function main() {
   const provider = new ethers.providers.JsonRpcProvider(configs.provider);
   const wallet = new ethers.Wallet(configs.owner_key).connect(provider)
   const contract = new ethers.Contract(configs.contract_address.swap, artifact.abi, wallet)
-  
-  const amount = ethers.utils.parseEther("10")
 
-  console.log("Approving router...")
-  await approve("0xE592427A0AEce92De3Edee1F18E0157C05861564", amount)
-  console.log("Approving swap...")
+  const amount = ethers.utils.parseEther("1002").toString()
+
+  console.log("Approving..")
   await approve(configs.contract_address.swap, amount)
-
+  console.log("Approving..")
+  await approve(configs.constructor_arguments.swap[0], amount)
   console.log("Approve done.")
   const result = await contract.buyDAI(amount)
   console.log("Bought at:", result.hash)
