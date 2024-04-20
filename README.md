@@ -52,3 +52,22 @@ yarn explorer:stop
 ```
 
 Each time you stop and start the explorer you will also need to restart the network.
+
+## Flow to buy USDC and DAI
+
+```
+yarn task deploy hardhat // To deploy the contracts
+yarn task wrap hardhat // To wrap ETH to WETH
+yarn task buy hardhat // To buy USDC and DAI
+yarn task balances hardhat // To check the balances
+```
+
+## Flow to mint a position
+
+```
+yarn task deploy hardhat // To deploy the contracts
+yarn task wrap hardhat // To wrap ETH to WETH
+yarn task buy hardhat // To buy USDC and DAI
+yarn task buy hardhat // To buy USDC and DAI
+yarn task deposits hardhat // To check deposits
+```

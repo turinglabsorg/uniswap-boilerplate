@@ -27,7 +27,7 @@ async function main() {
   const contract = new ethers.Contract(configs.contract_address.swap, artifact.abi, wallet)
 
   const amountToApprove = ethers.utils.parseEther("10000").toString()
-  const amountToBuy = ethers.utils.parseEther("0.1").toString()
+  const amountToBuy = ethers.utils.parseEther("10").toString()
 
   console.log("Approving:", configs.contract_address.swap)
   await approve(configs.contract_address.swap, amountToApprove)
