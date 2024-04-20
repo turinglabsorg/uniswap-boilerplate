@@ -27,7 +27,7 @@ async function main() {
   const contract = new ethers.Contract(configs.contract_address.swap, artifact.abi, wallet)
 
   const amountToApprove = ethers.utils.parseEther("100").toString()
-  const amountToBuy = ethers.utils.parseEther("1").toString()
+  const amountToBuy = ethers.utils.parseEther("10000").toString()
 
   console.log("Approving:", configs.contract_address.swap)
   await approve(configs.contract_address.swap, amountToApprove)
@@ -36,11 +36,11 @@ async function main() {
   console.log("Allowance:", allowance)
   console.log("Amount to buy:", amountToBuy)
   console.log("Approve done.")
-  const result1 = await contract.buyDAI(amountToBuy)
+  const result1 = await contract.buyDAI(amountToBuy, { gasLimit: 1000000 })
   console.log("Bought at:", result1.hash)
   const receipt = await result1.wait()
   console.log("💸 Gas used:", receipt.gasUsed.toString())
-  const result2 = await contract.buyUSDC(amountToBuy)
+  const result2 = await contract.buyUSDC(amountToBuy, { gasLimit: 1000000 })
   console.log("Bought at:", result2.hash)
   const receipt2 = await result2.wait()
   console.log("💸 Gas used:", receipt2.gasUsed.toString())

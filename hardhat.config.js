@@ -21,6 +21,9 @@ let hardhatConfigs = {
     },
     mainnet: {
       url: provider
+    },
+    local: {
+      url: provider
     }
   },
   solidity: {
