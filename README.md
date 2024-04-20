@@ -1,4 +1,4 @@
-# Hardhat customized boilerplate
+# Uniswapv3 Boilerplate
 
 With this boilerplate you'll be able to create even more automations than standard hardhat example.
 

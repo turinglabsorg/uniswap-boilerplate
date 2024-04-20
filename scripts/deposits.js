@@ -15,9 +15,14 @@ async function main() {
   for (let i = 0; i < lpTokenCounter; i++) {
     const tokenId = await contract.lpTokens(i)
     const deposit = await contract.deposits(tokenId)
+    console.log("Token ID:", tokenId.toString())
+    console.log("Owner:", deposit.owner)
+    console.log("Amount0:", deposit.token0.toString())
+    console.log("Amount1:", deposit.token1.toString())
+    console.log("Liquidity:", deposit.liquidity.toString())
+    console.log("--")
     deposits.push(deposit)
   }
-  console.table(deposits)
 }
 
 main()

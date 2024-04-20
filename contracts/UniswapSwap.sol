@@ -79,8 +79,12 @@ contract UniswapSwap {
 
         console.log("amountIn: %s", amountIn);
         console.log(
-            "Balance of WETH9: %s",
+            "Balance of WETH9 for contract: %s",
             IERC20(WETH9).balanceOf(address(this))
+        );
+        console.log(
+            "Balance of WETH9 for owner: %s",
+            IERC20(WETH9).balanceOf(address(msg.sender))
         );
 
         // Approve the router to spend WETH9.

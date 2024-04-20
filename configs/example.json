@@ -1,10 +1,21 @@
 {
     "network": "localhost",
-    "contract_name": "UniswapLP",
-    "constructor_arguments": [
-        "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
-    ],
-    "contract_address": "",
+    "contract_name": {
+        "lp": "UniswapLP",
+        "swap": "UniswapSwap"
+    },
+    "constructor_arguments": {
+        "lp": [
+            "0xC36442b4a4522E871399CD717aBDD847Ab11FE88"
+        ],
+        "swap": [
+            "0xE592427A0AEce92De3Edee1F18E0157C05861564"
+        ]
+    },
+    "contract_address": {
+        "lp": "",
+        "swap": ""
+    },
     "owner_mnemonic": "",
     "provider": "http://0.0.0.0:8545",
     "owner_key": "",
