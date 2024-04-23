@@ -7,7 +7,7 @@ let hardhatConfigs = {
   networks: {
     hardhat: {
       forking: {
-        url: `https://eth-mainnet.g.alchemy.com/v2/5_Xm3n05Mh_bN5kldBXfjWysMeg4wK_X`,
+        url: `https://eth-mainnet.g.alchemy.com/v2/<CHANGE_ALCHEMY_KEY_HERE>`,
       }
     },
     tenderly: {
