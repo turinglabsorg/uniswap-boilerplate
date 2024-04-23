@@ -68,6 +68,6 @@ yarn task balances hardhat // To check the balances
 yarn task deploy hardhat // To deploy the contracts
 yarn task wrap hardhat // To wrap ETH to WETH
 yarn task buy hardhat // To buy USDC and DAI
-yarn task buy hardhat // To buy USDC and DAI
+yarn task mint hardhat // To mint a new position
 yarn task deposits hardhat // To check deposits
 ```
